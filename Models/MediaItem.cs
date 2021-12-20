@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using Helpers;
 
     public class MediaItem
     {
@@ -16,5 +17,6 @@
         public bool IsDuplicate { get; set; }
         public bool IsProcessed { get; set; }
         public string MoveLocation { get; set; }
+        public FileHelper.MediaType MediaType { get; set; }
     }
 }

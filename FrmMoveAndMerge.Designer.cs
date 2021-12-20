@@ -59,6 +59,7 @@
             this.tbTotalNumberOfItems = new System.Windows.Forms.TextBox();
             this.lblTotalNumberOfItems = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.lblProgressBar = new System.Windows.Forms.Label();
             this.grpBoxStep1.SuspendLayout();
             this.grpBoxOptions.SuspendLayout();
             this.grpBoxParams.SuspendLayout();
@@ -243,16 +244,16 @@
             // tbConsole
             // 
             this.tbConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbConsole.Location = new System.Drawing.Point(390, 313);
+            this.tbConsole.Location = new System.Drawing.Point(390, 352);
             this.tbConsole.Name = "tbConsole";
-            this.tbConsole.Size = new System.Drawing.Size(572, 182);
+            this.tbConsole.Size = new System.Drawing.Size(572, 143);
             this.tbConsole.TabIndex = 9;
             this.tbConsole.Text = "";
             // 
             // lblLog
             // 
             this.lblLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLog.Location = new System.Drawing.Point(390, 293);
+            this.lblLog.Location = new System.Drawing.Point(390, 334);
             this.lblLog.Name = "lblLog";
             this.lblLog.Size = new System.Drawing.Size(115, 17);
             this.lblLog.TabIndex = 10;
@@ -320,16 +321,28 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(25, 425);
+            this.progressBar.Location = new System.Drawing.Point(390, 306);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(342, 23);
+            this.progressBar.Size = new System.Drawing.Size(572, 23);
             this.progressBar.TabIndex = 12;
+            // 
+            // lblProgressBar
+            // 
+            this.lblProgressBar.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblProgressBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProgressBar.Location = new System.Drawing.Point(390, 315);
+            this.lblProgressBar.Name = "lblProgressBar";
+            this.lblProgressBar.Size = new System.Drawing.Size(572, 19);
+            this.lblProgressBar.TabIndex = 13;
+            this.lblProgressBar.Text = "No task";
+            this.lblProgressBar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // FrmMoveAndMerge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 528);
+            this.Controls.Add(this.lblProgressBar);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.gbValues);
             this.Controls.Add(this.lblLog);
@@ -351,7 +364,9 @@
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.ProgressBar progressBar;
+        
+
+        public System.Windows.Forms.ProgressBar progressBar;
 
         private System.Windows.Forms.Label lblTotalNumberOfItems;
         private System.Windows.Forms.Label lblTitle;
@@ -362,6 +377,7 @@
         private System.Windows.Forms.Label lblSelectSource;
         private System.Windows.Forms.Label lblItemsProcessed;
         private System.Windows.Forms.Label lblDuplicates;
+        private System.Windows.Forms.Label lblProgressBar;
 
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnTarget;

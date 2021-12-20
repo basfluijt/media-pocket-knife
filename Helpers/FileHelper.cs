@@ -1,21 +1,37 @@
 ﻿namespace MediaSorter.Helpers
 {
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
 
     public static class FileHelper
     {
-        private const string IncludedImageExtentions = ".jpg,.jpeg,.png,.tif,.tiff,.bmp,.gif,.eps,.raw";
-        private const string IncludedVideoExtentions = ".mp4,.mov,.wmv,.flv,.avi,.avchd,.webm,.mkv,.3gp";
+        private const string IncludedImageExtensions = ".jpg,.jpeg,.png,.tif,.tiff,.bmp,.gif,.eps,.raw";
+        private const string IncludedVideoExtensions = ".mp4,.mov,.wmv,.flv,.avi,.avchd,.webm,.mkv,.3gp";
 
-        public static List<string> FilterMediaFiles(List<string> unfilteredList)
+        private static IEnumerable<string> ImageExtensions => IncludedImageExtensions.Split(',').ToList();
+        private static IEnumerable<string> VideoExtensions => IncludedVideoExtensions.Split(',').ToList();
+
+        public static List<string> FilterMediaFiles(IEnumerable<string> unfilteredList)
         {
-            var imageExtentions = IncludedImageExtentions.Split(',');
-            var videoExtentions = IncludedVideoExtentions.Split(',');
-
             return unfilteredList
-                .Where(file => imageExtentions.Any(i => file.ToLower().EndsWith(i)) || videoExtentions.Any(i => file.ToLower().EndsWith(i)))
+                .Where(file => ImageExtensions.Any(i => file.ToLower().EndsWith(i)) || VideoExtensions.Any(i => file.ToLower().EndsWith(i)))
                 .ToList();
+        }
+
+        public static MediaType GetMediaType(string mediaPath)
+        {
+            return ImageExtensions.Any(mediaPath.Contains) ? MediaType.Image
+                : VideoExtensions.Any(mediaPath.Contains) ? MediaType.Video
+                : MediaType.None;
+        }
+        
+        public enum MediaType
+        {
+            Image = 0,
+            Video = 1,
+            Audio = 2,
+            None = 3
         }
     }
 }

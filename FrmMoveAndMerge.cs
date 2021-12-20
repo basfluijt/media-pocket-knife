@@ -11,11 +11,12 @@
     public partial class FrmMoveAndMerge : Form
     {
         /******** Work vars *********/
-
-
+        
         public FrmMoveAndMerge()
         {
             InitializeComponent();
+            MediaAnalyzer.InitProgressBar += SetProgressBarValues;
+            MediaAnalyzer.ProcessProgressBar += UpdateProgressBar;
 
             tbConsole.Clear();
 
@@ -30,6 +31,8 @@
             tbDuplicates.Text = @"0";
             tbNumberOfItemsProcessed.Text = @"0";
 
+            lblProgressBar.Text = $@"IDLE";
+            lblProgressBar.BackColor = Color.Transparent;
             progressBar.Visible = true;
             progressBar.Style = ProgressBarStyle.Continuous;
             progressBar.Minimum = 1;
@@ -151,10 +154,33 @@
         }
 
         /******** Methods *********/
+        
+        private void UpdateProgressBar()  {
+            progressBar.PerformStep();
+            if (progressBar.Value.Equals(progressBar.Maximum))
+            {
+                lblProgressBar.Text = $@"IDLE";
+                progressBar.Value = 1;
+            }
+            Application.DoEvents();
+        }
+        
+        private void SetProgressBarValues(int minValue, int maxValue, int stepValue, string labelText, int bgColor)
+        {
+            lblProgressBar.Text = !string.IsNullOrWhiteSpace(labelText) ? labelText : $@"PROCESSING";
+            
+            progressBar.BackColor = bgColor == 0 ? Color.Green : Color.Goldenrod;
+            progressBar.Visible = true;
+            progressBar.Minimum = minValue;
+            progressBar.Maximum = maxValue;
+            progressBar.Step = stepValue;
+            Application.DoEvents();
+        }
 
         private void ProcessWorkload()
         {
             DisableUi();
+            SetProgressBarValues(1, Workload.Count, 1, "MOVING MEDIA FILES TO CORRESPONDING FOLDERS", 0);
             tbConsole.AppendText("\n ------ Starting Workload ------");
             Application.DoEvents();
 
@@ -225,13 +251,15 @@
             }
 
             tbConsole.AppendText("\n ALL DONE!");
+            btnStart.Enabled = false;
             DisableUi(false);
+            
         }
 
         private void UpdateProcessedItems()
         {
             tbNumberOfItemsProcessed.Text = Workload.Count(w => w.IsProcessed).ToString();
-            progressBar.PerformStep();
+            UpdateProgressBar();
             Application.DoEvents();
         }
 
