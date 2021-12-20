@@ -100,15 +100,16 @@
 
                 if (SourcePath != null && SourcePath.Equals(fbd.SelectedPath))
                 {
-                    tbConsole.AppendText($"\n [ERROR] TARGET folder can't be the same as the SOURCE folder. Aborting...");
+                    tbConsole.AppendText("\n [ERROR] TARGET folder can't be the same as the SOURCE folder. Aborting...");
                     Application.DoEvents();
                     DisableUi(false);
                     return;
                 }
+
                 tbConsole.AppendText($"\n [TARGET] Reading files from ( {fbd.SelectedPath} )");
                 Application.DoEvents();
                 var files = Directory.EnumerateFiles(fbd.SelectedPath, "*", SearchOption.AllDirectories).ToList();
-                
+
 
                 tbConsole.AppendText("\n [TARGET] Filtering media files from list");
                 Application.DoEvents();
@@ -141,7 +142,7 @@
                 btnStart.ForeColor = Color.Azure;
                 tbConsole.AppendText("\n [ERROR] There are no items to be processed or one of the paths are invalid.");
                 Application.DoEvents();
-                
+
                 DisableUi(false);
                 return;
             }
@@ -173,11 +174,11 @@
 
                     var targetDateDirectory = $@"{existingItem.Directory.FullName}";
                     item.MoveLocation = targetDateDirectory;
-                    
+
                     // If the item is labeled as a duplicate, remove the original for overwrite is enabled
-                    if(item.IsDuplicate || File.Exists($@"{targetDateDirectory}\{item.FileName}"))
+                    if (item.IsDuplicate || File.Exists($@"{targetDateDirectory}\{item.FileName}"))
                         File.Delete($@"{targetDateDirectory}\{item.FileName}");
-                    
+
                     if (cbCopyOnly.Checked)
                         File.Copy(item.FullFileName, $@"{targetDateDirectory}\{item.FileName}");
                     else
@@ -191,18 +192,18 @@
                 tbConsole.AppendText($"\n No matching date-folder found in target for {item.FileName} with date {formattedDate}.");
                 tbConsole.AppendText($"\n Moving item to date-folder {formattedDate} in target-folder.");
                 Application.DoEvents();
-                
+
                 try
                 {
                     var targetDateDirectory = $@"{TargetPath}\{formattedDate}";
                     if (!Directory.Exists(targetDateDirectory)) Directory.CreateDirectory(targetDateDirectory);
 
                     item.MoveLocation = targetDateDirectory;
-                    
+
                     // If the item is labeled as a duplicate, remove the original for overwrite is enabled
-                    if(item.IsDuplicate)
+                    if (item.IsDuplicate)
                         File.Delete($@"{targetDateDirectory}\{item.FileName}");
-                    
+
                     if (cbCopyOnly.Checked)
                         File.Copy(item.FullFileName, $@"{targetDateDirectory}\{item.FileName}");
                     else
@@ -222,7 +223,8 @@
 
                 UpdateProcessedItems();
             }
-            tbConsole.AppendText($"\n ALL DONE!");
+
+            tbConsole.AppendText("\n ALL DONE!");
             DisableUi(false);
         }
 
