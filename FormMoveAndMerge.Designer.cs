@@ -2,7 +2,7 @@
 {
     using System.ComponentModel;
 
-    partial class FrmMoveAndMerge
+    partial class FormMoveAndMerge
     {
         /// <summary>
         /// Required designer variable.
@@ -352,7 +352,7 @@
             this.Controls.Add(this.grpBoxOptions);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.grpBoxStep1);
-            this.Name = "FrmMoveAndMerge";
+            this.Name = "FormMoveAndMerge";
             this.Text = "Move And Merge";
             this.grpBoxStep1.ResumeLayout(false);
             this.grpBoxOptions.ResumeLayout(false);

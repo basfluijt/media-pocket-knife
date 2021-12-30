@@ -8,11 +8,11 @@
     using System.Windows.Forms;
     using Helpers;
 
-    public partial class FrmMoveAndMerge : Form
+    public partial class FormMoveAndMerge : Form
     {
         /******** Work vars *********/
-        
-        public FrmMoveAndMerge()
+
+        public FormMoveAndMerge()
         {
             InitializeComponent();
             MediaAnalyzer.InitProgressBar += SetProgressBarValues;
@@ -31,7 +31,7 @@
             tbDuplicates.Text = @"0";
             tbNumberOfItemsProcessed.Text = @"0";
 
-            lblProgressBar.Text = $@"IDLE";
+            lblProgressBar.Text = @"IDLE";
             lblProgressBar.BackColor = Color.Transparent;
             progressBar.Visible = true;
             progressBar.Style = ProgressBarStyle.Continuous;
@@ -71,6 +71,8 @@
                 tbConsole.AppendText("\n [SOURCE] Filtering media files from list");
                 Application.DoEvents();
                 SourceFiles = FileHelper.FilterMediaFiles(files);
+                tbConsole.AppendText(" - Done");
+                Application.DoEvents();
                 tbTotalNumberOfItems.Text = SourceFiles.Count.ToString();
                 SourcePath = fbd.SelectedPath;
                 tbSource.Text = SourcePath;
@@ -113,11 +115,12 @@
                 Application.DoEvents();
                 var files = Directory.EnumerateFiles(fbd.SelectedPath, "*", SearchOption.AllDirectories).ToList();
 
-
                 tbConsole.AppendText("\n [TARGET] Filtering media files from list");
                 Application.DoEvents();
 
                 TargetFiles = FileHelper.FilterMediaFiles(files);
+                tbConsole.AppendText(" - Done");
+                Application.DoEvents();
                 TargetPath = fbd.SelectedPath;
                 tbTarget.Text = TargetPath;
             }
@@ -154,21 +157,23 @@
         }
 
         /******** Methods *********/
-        
-        private void UpdateProgressBar()  {
+
+        private void UpdateProgressBar()
+        {
             progressBar.PerformStep();
             if (progressBar.Value.Equals(progressBar.Maximum))
             {
-                lblProgressBar.Text = $@"IDLE";
+                lblProgressBar.Text = @"IDLE";
                 progressBar.Value = 1;
             }
+
             Application.DoEvents();
         }
-        
+
         private void SetProgressBarValues(int minValue, int maxValue, int stepValue, string labelText, int bgColor)
         {
-            lblProgressBar.Text = !string.IsNullOrWhiteSpace(labelText) ? labelText : $@"PROCESSING";
-            
+            lblProgressBar.Text = !string.IsNullOrWhiteSpace(labelText) ? labelText : @"PROCESSING";
+
             progressBar.BackColor = bgColor == 0 ? Color.Green : Color.Goldenrod;
             progressBar.Visible = true;
             progressBar.Minimum = minValue;
@@ -188,63 +193,48 @@
             {
                 if (item.IsDuplicate && !cbOverwrite.Checked) continue;
 
-                var formattedDate = cbCustomDateFormat.Checked && !string.IsNullOrWhiteSpace(cbCustomDateFormat.Text)
+                var formattedDate = cbCustomDateFormat.Checked && !string.IsNullOrWhiteSpace(tbCustomDateFormat.Text)
                     ? item.Date.ToString(tbCustomDateFormat.Text)
-                    : item.Date.ToString("yyyy-MM-dd");
+                    : item.Date.ToString(Constants.DefaultDateFormat);
 
                 var existingItem = CheckList.FirstOrDefault(c => c.Directory.FullName.Contains(formattedDate));
-                if (existingItem != null)
+
+                tbConsole.AppendText(existingItem != null
+                    ? $"\n Existing date formatted folder found for {item.FileName}."
+                    : $"\n No matching date-folder found in target for {item.FileName}.");
+                Application.DoEvents();
+
+                var targetDateDirectory = existingItem != null ? $@"{existingItem.Directory.FullName}" : $@"{TargetPath}\{formattedDate}";
+                try
                 {
-                    tbConsole.AppendText($"\n Existing folder found for {item.FileName} with date {formattedDate}.");
+                    if (!Directory.Exists(targetDateDirectory)) Directory.CreateDirectory(targetDateDirectory); // Create directory if it doesn't exists, should always be the case when an existing item is found.
+                }
+                catch (Exception ex)
+                {
+                    tbConsole.AppendText("\n [ERROR] - Failed to create folder.");
+                    tbConsole.AppendText($"\n Error message: {ex.Message}");
                     Application.DoEvents();
-
-                    var targetDateDirectory = $@"{existingItem.Directory.FullName}";
-                    item.MoveLocation = targetDateDirectory;
-
-                    // If the item is labeled as a duplicate, remove the original for overwrite is enabled
-                    if (item.IsDuplicate || File.Exists($@"{targetDateDirectory}\{item.FileName}"))
-                        File.Delete($@"{targetDateDirectory}\{item.FileName}");
-
-                    if (cbCopyOnly.Checked)
-                        File.Copy(item.FullFileName, $@"{targetDateDirectory}\{item.FileName}");
-                    else
-                        File.Move(item.FullFileName, $@"{targetDateDirectory}\{item.FileName}");
-
-                    item.IsProcessed = true;
-                    tbConsole.AppendText($"\n Moved {item.FileName}.");
-                    continue;
                 }
 
-                tbConsole.AppendText($"\n No matching date-folder found in target for {item.FileName} with date {formattedDate}.");
                 tbConsole.AppendText($"\n Moving item to date-folder {formattedDate} in target-folder.");
                 Application.DoEvents();
 
-                try
-                {
-                    var targetDateDirectory = $@"{TargetPath}\{formattedDate}";
-                    if (!Directory.Exists(targetDateDirectory)) Directory.CreateDirectory(targetDateDirectory);
+                // If the item is labeled as a duplicate, remove the original but only if overwrite is enabled
+                // Else continue and skip the media item
+                if (File.Exists($@"{targetDateDirectory}\{item.FileName}") && cbOverwrite.Checked)
+                    File.Delete($@"{targetDateDirectory}\{item.FileName}");
+                else if (File.Exists($@"{targetDateDirectory}\{item.FileName}") && !cbOverwrite.Checked)
+                    continue;
 
-                    item.MoveLocation = targetDateDirectory;
+                if (cbCopyOnly.Checked)
+                    File.Copy(item.FullFileName, $@"{targetDateDirectory}\{item.FileName}");
+                else
+                    File.Move(item.FullFileName, $@"{targetDateDirectory}\{item.FileName}");
 
-                    // If the item is labeled as a duplicate, remove the original for overwrite is enabled
-                    if (item.IsDuplicate)
-                        File.Delete($@"{targetDateDirectory}\{item.FileName}");
-
-                    if (cbCopyOnly.Checked)
-                        File.Copy(item.FullFileName, $@"{targetDateDirectory}\{item.FileName}");
-                    else
-                        File.Move(item.FullFileName, $@"{targetDateDirectory}\{item.FileName}");
-                }
-                catch (Exception)
-                {
-                    tbConsole.AppendText($@"\n Failed to create folder or move {TargetPath}\{formattedDate}\{item.FileName}.");
-                    tbConsole.AppendText($"\n Skipping {item.FileName}");
-                    Application.DoEvents();
-                }
-
+                item.MoveLocation = targetDateDirectory;
                 item.IsProcessed = true;
 
-                tbConsole.AppendText($"\n Moved {item.FileName}.");
+                tbConsole.AppendText($"- Done.");
                 Application.DoEvents();
 
                 UpdateProcessedItems();
@@ -253,7 +243,6 @@
             tbConsole.AppendText("\n ALL DONE!");
             btnStart.Enabled = false;
             DisableUi(false);
-            
         }
 
         private void UpdateProcessedItems()

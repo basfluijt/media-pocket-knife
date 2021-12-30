@@ -11,12 +11,12 @@
         public string FileName { get; set; }
         public string FullFileName { get; set; }
         public string Extension { get; set; }
-        public string Location { get; set; }
         public long Size { get; set; }
         public DateTime Date { get; set; }
         public bool IsDuplicate { get; set; }
         public bool IsProcessed { get; set; }
         public string MoveLocation { get; set; }
+        public string Source { get; set; }
         public FileHelper.MediaType MediaType { get; set; }
     }
 }
