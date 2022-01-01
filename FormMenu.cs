@@ -1,6 +1,7 @@
 ﻿namespace MediaSorter
 {
     using System;
+    using System.Drawing;
     using System.Windows.Forms;
 
     public partial class FormMenu : Form
@@ -8,6 +9,10 @@
         public FormMenu()
         {
             InitializeComponent();
+            btnUndouble.Enabled = false;
+            btnUndouble.BackColor = Color.LightGray;
+            btnReorder.Enabled = false;
+            btnReorder.BackColor = Color.LightGray;
         }
 
         private void btnMoveAndMerge_Click(object sender, EventArgs e)

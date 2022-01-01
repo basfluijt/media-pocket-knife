@@ -133,6 +133,12 @@
         <Compile Include="FormMoveAndMerge.Designer.cs">
             <DependentUpon>FormMoveAndMerge.cs</DependentUpon>
         </Compile>
+        <Compile Include="FormRestructure.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="FormRestructure.Designer.cs">
+          <DependentUpon>FormRestructure.cs</DependentUpon>
+        </Compile>
         <Compile Include="Helpers\FileHelper.cs" />
         <Compile Include="Helpers\MediaAnalyzer.cs" />
         <Compile Include="Helpers\Tools.cs" />

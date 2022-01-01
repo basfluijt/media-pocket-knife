@@ -224,7 +224,7 @@
             this.cbCustomThreshold.Name = "cbCustomThreshold";
             this.cbCustomThreshold.Size = new System.Drawing.Size(165, 24);
             this.cbCustomThreshold.TabIndex = 4;
-            this.cbCustomThreshold.Text = "Use custom threshold";
+            this.cbCustomThreshold.Text = "Use custom index threshold";
             this.cbCustomThreshold.UseVisualStyleBackColor = true;
             // 
             // tbCustomThreshold
