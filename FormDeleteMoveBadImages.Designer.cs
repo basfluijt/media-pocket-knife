@@ -73,9 +73,9 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(393, 276);
+            this.progressBar.Location = new System.Drawing.Point(393, 266);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(572, 23);
+            this.progressBar.Size = new System.Drawing.Size(572, 16);
             this.progressBar.TabIndex = 22;
             // 
             // gbValues
@@ -123,7 +123,7 @@
             // 
             // lblLog
             // 
-            this.lblLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLog.Location = new System.Drawing.Point(393, 315);
             this.lblLog.Name = "lblLog";
             this.lblLog.Size = new System.Drawing.Size(115, 17);
@@ -167,7 +167,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.BackColor = System.Drawing.Color.MistyRose;
+            this.btnStart.BackColor = System.Drawing.Color.IndianRed;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Location = new System.Drawing.Point(28, 435);
             this.btnStart.Name = "btnStart";
@@ -237,11 +237,11 @@
             // lblTitle
             // 
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(321, 19);
+            this.lblTitle.Location = new System.Drawing.Point(28, 19);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(366, 37);
+            this.lblTitle.Size = new System.Drawing.Size(937, 37);
             this.lblTitle.TabIndex = 15;
-            this.lblTitle.Text = "Delete / Move bad images";
+            this.lblTitle.Text = "Handle bad/blurry images";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // grpBoxStep1
@@ -279,6 +279,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(992, 497);
             this.Controls.Add(this.lblProgressBar);
             this.Controls.Add(this.progressBar);

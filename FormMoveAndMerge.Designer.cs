@@ -68,13 +68,14 @@
             // 
             // btnSource
             // 
+            this.btnSource.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSource.Location = new System.Drawing.Point(109, 35);
             this.btnSource.Name = "btnSource";
             this.btnSource.Size = new System.Drawing.Size(110, 35);
             this.btnSource.TabIndex = 0;
             this.btnSource.Text = "Select";
-            this.btnSource.UseVisualStyleBackColor = true;
+            this.btnSource.UseVisualStyleBackColor = false;
             this.btnSource.Click += new System.EventHandler(this.btnSource_Click);
             // 
             // lblSelectSource
@@ -122,11 +123,11 @@
             // lblTitle
             // 
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(352, 9);
+            this.lblTitle.Location = new System.Drawing.Point(25, 19);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(265, 37);
+            this.lblTitle.Size = new System.Drawing.Size(937, 37);
             this.lblTitle.TabIndex = 5;
-            this.lblTitle.Text = "Move And Merge";
+            this.lblTitle.Text = "Merge two folders with media (date formatted)";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // grpBoxOptions
@@ -188,9 +189,9 @@
             // 
             // btnStart
             // 
-            this.btnStart.BackColor = System.Drawing.Color.MistyRose;
+            this.btnStart.BackColor = System.Drawing.Color.IndianRed;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(25, 454);
+            this.btnStart.Location = new System.Drawing.Point(25, 475);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(342, 41);
             this.btnStart.TabIndex = 7;
@@ -244,7 +245,7 @@
             // tbConsole
             // 
             this.tbConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbConsole.Location = new System.Drawing.Point(390, 352);
+            this.tbConsole.Location = new System.Drawing.Point(390, 375);
             this.tbConsole.Name = "tbConsole";
             this.tbConsole.Size = new System.Drawing.Size(572, 143);
             this.tbConsole.TabIndex = 9;
@@ -252,8 +253,8 @@
             // 
             // lblLog
             // 
-            this.lblLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLog.Location = new System.Drawing.Point(390, 334);
+            this.lblLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLog.Location = new System.Drawing.Point(390, 357);
             this.lblLog.Name = "lblLog";
             this.lblLog.Size = new System.Drawing.Size(115, 17);
             this.lblLog.TabIndex = 10;
@@ -321,26 +322,27 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(390, 306);
+            this.progressBar.Location = new System.Drawing.Point(390, 308);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(572, 23);
+            this.progressBar.Size = new System.Drawing.Size(572, 16);
             this.progressBar.TabIndex = 12;
             // 
             // lblProgressBar
             // 
             this.lblProgressBar.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblProgressBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProgressBar.Location = new System.Drawing.Point(390, 315);
+            this.lblProgressBar.Location = new System.Drawing.Point(390, 327);
             this.lblProgressBar.Name = "lblProgressBar";
             this.lblProgressBar.Size = new System.Drawing.Size(572, 19);
             this.lblProgressBar.TabIndex = 13;
             this.lblProgressBar.Text = "No task";
             this.lblProgressBar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // FrmMoveAndMerge
+            // FormMoveAndMerge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(990, 528);
             this.Controls.Add(this.lblProgressBar);
             this.Controls.Add(this.progressBar);
