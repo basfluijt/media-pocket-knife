@@ -87,6 +87,7 @@
 
             // Set Progressbar
             progressBar.Maximum = Workload.Count;
+            progressBar.Value = 0;
 
             DisableUi(false);
         }
@@ -234,7 +235,7 @@
                 item.MoveLocation = targetDateDirectory;
                 item.IsProcessed = true;
 
-                tbConsole.AppendText($"- Done.");
+                tbConsole.AppendText("- Done.");
                 Application.DoEvents();
 
                 UpdateProcessedItems();

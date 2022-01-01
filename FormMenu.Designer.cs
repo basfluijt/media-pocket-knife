@@ -89,7 +89,7 @@
             this.btnDeleteBadImages.Name = "btnDeleteBadImages";
             this.btnDeleteBadImages.Size = new System.Drawing.Size(519, 34);
             this.btnDeleteBadImages.TabIndex = 4;
-            this.btnDeleteBadImages.Text = "Delete bad images";
+            this.btnDeleteBadImages.Text = "Delete or Move bad images";
             this.btnDeleteBadImages.UseVisualStyleBackColor = false;
             this.btnDeleteBadImages.Click += new System.EventHandler(this.btnBlurred_Click);
             // 

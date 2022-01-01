@@ -1,6 +1,7 @@
 ﻿namespace MediaSorter
 {
     using System;
+    using System.Drawing;
     using System.IO;
     using Helpers;
 
@@ -17,6 +18,14 @@
         public bool IsProcessed { get; set; }
         public string MoveLocation { get; set; }
         public string Source { get; set; }
+        public Size ImageSize { get; set; }
         public FileHelper.MediaType MediaType { get; set; }
+        public Orientation ImageOrientation { get; set; }
+   }
+    
+    public enum Orientation 
+    {
+        Horizontal,
+        Vertical
     }
 }

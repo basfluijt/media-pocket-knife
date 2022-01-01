@@ -29,7 +29,9 @@
         
         private void btnBlurred_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-        }
+            var frmDeleteMoveMerge = new FormDeleteMoveBadImages();
+            frmDeleteMoveMerge.StartPosition = FormStartPosition.CenterParent;
+            frmDeleteMoveMerge.Show();
+        }   
     }
 }
