@@ -276,27 +276,27 @@
                 btnSource.Enabled = false;
                 btnTarget.Enabled = false;
                 btnStart.Enabled = false;
-                btnStart.BackColor = Color.MistyRose;
+                btnStart.BackColor = Color.IndianRed;
             }
             else
             {
                 btnSource.Enabled = true;
                 if (!string.IsNullOrWhiteSpace(SourcePath))
                 {
-                    btnSource.BackColor = Color.YellowGreen;
+                    btnSource.BackColor = Color.GreenYellow;
                     btnSource.Text = @"Change";
                 }
 
                 btnTarget.Enabled = true;
                 if (!string.IsNullOrWhiteSpace(TargetPath))
                 {
-                    btnTarget.BackColor = Color.YellowGreen;
+                    btnTarget.BackColor = Color.GreenYellow;
                     btnTarget.Text = @"Change";
                 }
 
                 btnStart.Enabled = !string.IsNullOrWhiteSpace(SourcePath) && !string.IsNullOrWhiteSpace(TargetPath);
                 if (!btnStart.Enabled) return;
-                btnStart.BackColor = Color.YellowGreen;
+                btnStart.BackColor = Color.GreenYellow;
                 btnStart.ForeColor = Color.Azure;
             }
         }

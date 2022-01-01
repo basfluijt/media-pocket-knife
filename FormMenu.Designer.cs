@@ -44,7 +44,7 @@
             this.btnMoveAndMerge.Name = "btnMoveAndMerge";
             this.btnMoveAndMerge.Size = new System.Drawing.Size(519, 34);
             this.btnMoveAndMerge.TabIndex = 0;
-            this.btnMoveAndMerge.Text = "Move and Merge";
+            this.btnMoveAndMerge.Text = "Merge two folders with media (date formatted)";
             this.btnMoveAndMerge.UseVisualStyleBackColor = false;
             this.btnMoveAndMerge.Click += new System.EventHandler(this.btnMoveAndMerge_Click);
             // 
@@ -52,11 +52,11 @@
             // 
             this.btnUndouble.BackColor = System.Drawing.Color.LemonChiffon;
             this.btnUndouble.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUndouble.Location = new System.Drawing.Point(72, 157);
+            this.btnUndouble.Location = new System.Drawing.Point(72, 197);
             this.btnUndouble.Name = "btnUndouble";
             this.btnUndouble.Size = new System.Drawing.Size(519, 34);
             this.btnUndouble.TabIndex = 1;
-            this.btnUndouble.Text = "Un-double";
+            this.btnUndouble.Text = "Handle duplicate media files";
             this.btnUndouble.UseVisualStyleBackColor = false;
             this.btnUndouble.Click += new System.EventHandler(this.btnUndouble_Click);
             // 
@@ -64,11 +64,11 @@
             // 
             this.btnReorder.BackColor = System.Drawing.Color.MistyRose;
             this.btnReorder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReorder.Location = new System.Drawing.Point(72, 195);
+            this.btnReorder.Location = new System.Drawing.Point(72, 157);
             this.btnReorder.Name = "btnReorder";
             this.btnReorder.Size = new System.Drawing.Size(519, 34);
             this.btnReorder.TabIndex = 2;
-            this.btnReorder.Text = "Re-order";
+            this.btnReorder.Text = "Restructure media within a folder (date formatted)";
             this.btnReorder.UseVisualStyleBackColor = false;
             this.btnReorder.Click += new System.EventHandler(this.btnReorder_Click);
             // 
@@ -83,13 +83,13 @@
             // 
             // btnDeleteBadImages
             // 
-            this.btnDeleteBadImages.BackColor = System.Drawing.Color.Honeydew;
+            this.btnDeleteBadImages.BackColor = System.Drawing.Color.Thistle;
             this.btnDeleteBadImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteBadImages.Location = new System.Drawing.Point(72, 235);
+            this.btnDeleteBadImages.Location = new System.Drawing.Point(72, 237);
             this.btnDeleteBadImages.Name = "btnDeleteBadImages";
             this.btnDeleteBadImages.Size = new System.Drawing.Size(519, 34);
             this.btnDeleteBadImages.TabIndex = 4;
-            this.btnDeleteBadImages.Text = "Delete or Move bad images";
+            this.btnDeleteBadImages.Text = "Handle bad/blurry images";
             this.btnDeleteBadImages.UseVisualStyleBackColor = false;
             this.btnDeleteBadImages.Click += new System.EventHandler(this.btnBlurred_Click);
             // 
@@ -97,6 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(661, 317);
             this.Controls.Add(this.btnDeleteBadImages);
             this.Controls.Add(this.lblTitle);

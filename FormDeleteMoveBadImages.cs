@@ -226,7 +226,7 @@
                 btnSource.Enabled = false;
                 btnMoveTargetFolder.Enabled = false;
                 btnStart.Enabled = false;
-                btnStart.BackColor = Color.MistyRose;
+                btnStart.BackColor = Color.IndianRed;
             }
             else
             {
@@ -234,19 +234,19 @@
                 btnMoveTargetFolder.Enabled = true;
                 if (!string.IsNullOrWhiteSpace(SourcePath))
                 {
-                    btnSource.BackColor = Color.YellowGreen;
+                    btnSource.BackColor = Color.GreenYellow;
                     btnSource.Text = @"Change";
                 }
 
                 if (cbMoveImagesToFolder.Checked && !string.IsNullOrWhiteSpace(TargetPath))
                 {
-                    btnMoveTargetFolder.BackColor = Color.YellowGreen;
+                    btnMoveTargetFolder.BackColor = Color.GreenYellow;
                     btnMoveTargetFolder.Text = @"Change";
                 }
 
                 btnStart.Enabled = !string.IsNullOrWhiteSpace(SourcePath);
                 if (!btnStart.Enabled) return;
-                btnStart.BackColor = Color.YellowGreen;
+                btnStart.BackColor = Color.GreenYellow;
                 btnStart.ForeColor = Color.Azure;
             }
         }
