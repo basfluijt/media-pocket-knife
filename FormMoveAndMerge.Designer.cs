@@ -191,7 +191,7 @@
             // 
             this.btnStart.BackColor = System.Drawing.Color.IndianRed;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(25, 475);
+            this.btnStart.Location = new System.Drawing.Point(25, 433);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(342, 41);
             this.btnStart.TabIndex = 7;
@@ -245,16 +245,16 @@
             // tbConsole
             // 
             this.tbConsole.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbConsole.Location = new System.Drawing.Point(390, 375);
+            this.tbConsole.Location = new System.Drawing.Point(25, 519);
             this.tbConsole.Name = "tbConsole";
-            this.tbConsole.Size = new System.Drawing.Size(572, 143);
+            this.tbConsole.Size = new System.Drawing.Size(937, 228);
             this.tbConsole.TabIndex = 9;
             this.tbConsole.Text = "";
             // 
             // lblLog
             // 
             this.lblLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLog.Location = new System.Drawing.Point(390, 357);
+            this.lblLog.Location = new System.Drawing.Point(25, 501);
             this.lblLog.Name = "lblLog";
             this.lblLog.Size = new System.Drawing.Size(115, 17);
             this.lblLog.TabIndex = 10;
@@ -268,7 +268,7 @@
             this.gbValues.Controls.Add(this.lblItemsProcessed);
             this.gbValues.Controls.Add(this.tbTotalNumberOfItems);
             this.gbValues.Controls.Add(this.lblTotalNumberOfItems);
-            this.gbValues.Location = new System.Drawing.Point(390, 162);
+            this.gbValues.Location = new System.Drawing.Point(390, 282);
             this.gbValues.Name = "gbValues";
             this.gbValues.Size = new System.Drawing.Size(356, 128);
             this.gbValues.TabIndex = 11;
@@ -322,7 +322,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(390, 308);
+            this.progressBar.Location = new System.Drawing.Point(390, 433);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(572, 16);
             this.progressBar.TabIndex = 12;
@@ -331,7 +331,7 @@
             // 
             this.lblProgressBar.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblProgressBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProgressBar.Location = new System.Drawing.Point(390, 327);
+            this.lblProgressBar.Location = new System.Drawing.Point(390, 452);
             this.lblProgressBar.Name = "lblProgressBar";
             this.lblProgressBar.Size = new System.Drawing.Size(572, 19);
             this.lblProgressBar.TabIndex = 13;
@@ -343,7 +343,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(990, 528);
+            this.ClientSize = new System.Drawing.Size(990, 771);
             this.Controls.Add(this.lblProgressBar);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.gbValues);
