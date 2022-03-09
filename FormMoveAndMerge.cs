@@ -87,7 +87,7 @@
 
             // Set Progressbar
             progressBar.Maximum = Workload.Count;
-            progressBar.Value = 0;
+            progressBar.Value = 1;
 
             DisableUi(false);
         }
@@ -106,6 +106,7 @@
 
                 if (SourcePath != null && SourcePath.Equals(fbd.SelectedPath))
                 {
+                    tbConsole.SelectionColor = Color.IndianRed;
                     tbConsole.AppendText("\n [ERROR] TARGET folder can't be the same as the SOURCE folder. Aborting...");
                     Application.DoEvents();
                     DisableUi(false);
@@ -142,14 +143,15 @@
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (!Workload.Any() || !CheckList.Any() || string.IsNullOrWhiteSpace(TargetPath) || string.IsNullOrWhiteSpace(SourcePath))
+            if (!Workload.Any() || string.IsNullOrWhiteSpace(TargetPath) || string.IsNullOrWhiteSpace(SourcePath))
             {
                 btnStart.BackColor = Color.DarkRed;
                 btnStart.Text = @"STOP";
                 btnStart.ForeColor = Color.Azure;
-                tbConsole.AppendText("\n [ERROR] There are no items to be processed or one of the paths are invalid.");
+                tbConsole.SelectionColor = Color.IndianRed;
+                tbConsole.AppendText("\n [ERROR] The SOURCE or TARGET folder do not contain any media items, use merge instead.");
                 Application.DoEvents();
-
+                tbConsole.SelectionColor = Color.Black;
                 DisableUi(false);
                 return;
             }
@@ -212,13 +214,17 @@
                 }
                 catch (Exception ex)
                 {
+                    tbConsole.SelectionColor = Color.IndianRed;
                     tbConsole.AppendText("\n [ERROR] - Failed to create folder.");
                     tbConsole.AppendText($"\n Error message: {ex.Message}");
                     Application.DoEvents();
+                    tbConsole.SelectionColor = Color.Black;
                 }
 
+                tbConsole.SelectionColor = Color.Green;
                 tbConsole.AppendText($"\n Moving item to date-folder {formattedDate} in target-folder.");
                 Application.DoEvents();
+                tbConsole.SelectionColor = Color.Black;
 
                 // If the item is labeled as a duplicate, remove the original but only if overwrite is enabled
                 // Else continue and skip the media item
@@ -235,12 +241,15 @@
                 item.MoveLocation = targetDateDirectory;
                 item.IsProcessed = true;
 
+                tbConsole.SelectionColor = Color.Green;
                 tbConsole.AppendText("- Done.");
                 Application.DoEvents();
-
+                tbConsole.SelectionColor = Color.Black;
+                
                 UpdateProcessedItems();
             }
 
+            tbConsole.SelectionColor = Color.Green;
             tbConsole.AppendText("\n ALL DONE!");
             btnStart.Enabled = false;
             DisableUi(false);
@@ -283,21 +292,20 @@
                 btnSource.Enabled = true;
                 if (!string.IsNullOrWhiteSpace(SourcePath))
                 {
-                    btnSource.BackColor = Color.GreenYellow;
+                    btnSource.BackColor = Color.ForestGreen;
                     btnSource.Text = @"Change";
                 }
 
                 btnTarget.Enabled = true;
                 if (!string.IsNullOrWhiteSpace(TargetPath))
                 {
-                    btnTarget.BackColor = Color.GreenYellow;
+                    btnTarget.BackColor = Color.ForestGreen;
                     btnTarget.Text = @"Change";
                 }
 
                 btnStart.Enabled = !string.IsNullOrWhiteSpace(SourcePath) && !string.IsNullOrWhiteSpace(TargetPath);
                 if (!btnStart.Enabled) return;
-                btnStart.BackColor = Color.GreenYellow;
-                btnStart.ForeColor = Color.Azure;
+                btnStart.BackColor = Color.ForestGreen;
             }
         }
     }

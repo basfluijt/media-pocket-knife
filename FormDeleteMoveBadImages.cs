@@ -72,19 +72,24 @@
                 tbConsole.AppendText("\n [SOURCE] Filtering media files from list");
                 Application.DoEvents();
                 SourceFiles = FileHelper.FilterMediaFiles(files);
+                tbConsole.SelectionColor = Color.Green;
                 tbConsole.AppendText(" - Done");
                 Application.DoEvents();
+                tbConsole.SelectionColor = Color.Black;
+                
                 tbTotalNumberOfItems.Text = SourceFiles.Count.ToString();
                 SourcePath = fbd.SelectedPath;
                 tbSource.Text = SourcePath;
             }
 
-            tbConsole.AppendText($"\n [SOURCE] Reading {SourceFiles.Count} media properties");
+            tbConsole.AppendText($"\n [SOURCE] Reading media properties of {SourceFiles.Count} files");
             Application.DoEvents();
 
             // Set MediaItem properties
             Workload = MediaAnalyzer.GatherMediaInformation(SourceFiles);
+            tbConsole.SelectionColor = Color.Green;
             tbConsole.Text += @" - Done";
+            tbConsole.SelectionColor = Color.Black;
 
             // Set Progressbar
             progressBar.Maximum = Workload.Count;
@@ -107,8 +112,10 @@
 
                 if (SourcePath != null && SourcePath.Equals(fbd.SelectedPath))
                 {
+                    tbConsole.SelectionColor = Color.IndianRed;
                     tbConsole.AppendText("\n [ERROR] TARGET folder can't be the same as the SOURCE folder. Aborting...");
                     Application.DoEvents();
+                    tbConsole.SelectionColor = Color.Black;
                     DisableUi(false);
                     return;
                 }
@@ -161,9 +168,7 @@
                 Threshhold = cbCustomThreshold.Checked && !string.IsNullOrWhiteSpace(tbCustomThreshold.Text)
                     ? double.Parse(tbCustomThreshold.Text)
                     : Constants.DefaultThreshold;
-
-                tbConsole.AppendText($"\n Analyzing");
-
+                
                 var tempResizeImage = Tools.ResizeImage(item.FullFileName, item.ImageOrientation == Orientation.Horizontal
                     ? new Size(1920, 1080)
                     : new Size(1080, 1920));
@@ -182,21 +187,24 @@
 
                 if (blurIndex > Threshhold)
                 {
-                    tbConsole.AppendText($" INDEX: {blurIndex} [{item.ImageSize.Width} x {item.ImageSize.Height}] - ");
+                    tbConsole.AppendText($"\n Image blur-index: {blurIndex} with resolution [{item.ImageSize.Width} x {item.ImageSize.Height}]");
                     Application.DoEvents();
 
                     if (cbMoveImagesToFolder.Checked)
                     {
                         File.Move(item.FullFileName, $@"{TargetPath}\{item.FileName}");
-                        tbConsole.AppendText($"Moved! [{item.FileName}]");
+                        tbConsole.SelectionColor = Color.DarkOrange;
+                        tbConsole.AppendText($"- Moved! [{item.FileName}]");
                     }
                     else
                     {
                         File.Delete(item.FullFileName);
-                        tbConsole.AppendText($"Deleted! [{item.FileName}]");
+                        tbConsole.SelectionColor = Color.DarkOrange;
+                        tbConsole.AppendText($"- Deleted! [{item.FileName}]");
                     }
 
                     Application.DoEvents();
+                    tbConsole.SelectionColor = Color.Black;
 
                     item.MoveLocation = TargetPath;
                     item.IsProcessed = true;
@@ -207,10 +215,13 @@
                 }
 
                 item.IsProcessed = true;
-
-                tbConsole.AppendText($" INDEX: {blurIndex} [{item.ImageSize.Width} x {item.ImageSize.Height}] - Quality OK. [{item.FileName}]");
+                
+                tbConsole.AppendText($"\n Image blur-index: {blurIndex} with resolution [{item.ImageSize.Width} x {item.ImageSize.Height}]");
+                tbConsole.SelectionColor = Color.Green;
+                tbConsole.AppendText($"- Quality OK. [{item.FileName}]");
                 Application.DoEvents();
-
+                tbConsole.SelectionColor = Color.Black;
+                
                 UpdateProcessedItems();
             }
 
@@ -234,20 +245,19 @@
                 btnMoveTargetFolder.Enabled = true;
                 if (!string.IsNullOrWhiteSpace(SourcePath))
                 {
-                    btnSource.BackColor = Color.GreenYellow;
+                    btnSource.BackColor = Color.ForestGreen;
                     btnSource.Text = @"Change";
                 }
 
                 if (cbMoveImagesToFolder.Checked && !string.IsNullOrWhiteSpace(TargetPath))
                 {
-                    btnMoveTargetFolder.BackColor = Color.GreenYellow;
+                    btnMoveTargetFolder.BackColor = Color.ForestGreen;
                     btnMoveTargetFolder.Text = @"Change";
                 }
 
                 btnStart.Enabled = !string.IsNullOrWhiteSpace(SourcePath);
                 if (!btnStart.Enabled) return;
-                btnStart.BackColor = Color.GreenYellow;
-                btnStart.ForeColor = Color.Azure;
+                btnStart.BackColor = Color.ForestGreen;
             }
         }
 
