@@ -5,8 +5,10 @@
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
     using Helpers;
+    using Models;
 
     public partial class FormMoveAndMerge : Form
     {
@@ -53,7 +55,7 @@
         private List<MediaItem> CheckList { get; set; }
 
         /******** Button Click-events *********/
-        private void btnSource_Click(object sender, EventArgs e)
+        private async void btnSource_Click(object sender, EventArgs e)
         {
             DisableUi();
             using (var fbd = new FolderBrowserDialog())
@@ -82,7 +84,7 @@
             Application.DoEvents();
 
             // Set MediaItem properties
-            Workload = MediaAnalyzer.GatherMediaInformation(SourceFiles);
+            Workload = await MediaAnalyzer.GatherMediaInformation(SourceFiles);
             tbConsole.Text += @" - Done";
 
             // Set Progressbar
@@ -92,7 +94,7 @@
             DisableUi(false);
         }
 
-        private void btnTarget_Click(object sender, EventArgs e)
+        private async void btnTarget_Click(object sender, EventArgs e)
         {
             DisableUi();
             using (var fbd = new FolderBrowserDialog())
@@ -119,10 +121,10 @@
 
                 tbConsole.AppendText("\n [TARGET] Filtering media files from list");
                 Application.DoEvents();
-
                 TargetFiles = FileHelper.FilterMediaFiles(files);
                 tbConsole.AppendText(" - Done");
                 Application.DoEvents();
+                
                 TargetPath = fbd.SelectedPath;
                 tbTarget.Text = TargetPath;
             }
@@ -131,7 +133,7 @@
             Application.DoEvents();
 
             // Set MediaItem properties
-            CheckList = MediaAnalyzer.GatherMediaInformation(TargetFiles);
+            CheckList = await MediaAnalyzer.GatherMediaInformation(TargetFiles);
             tbConsole.Text += @" - Done";
             Application.DoEvents();
 

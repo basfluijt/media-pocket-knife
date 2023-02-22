@@ -11,8 +11,6 @@
             InitializeComponent();
             btnUndouble.Enabled = false;
             btnUndouble.BackColor = Color.LightGray;
-            btnReorder.Enabled = false;
-            btnReorder.BackColor = Color.LightGray;
         }
 
         private void btnMoveAndMerge_Click(object sender, EventArgs e)
@@ -29,7 +27,9 @@
 
         private void btnReorder_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            var frmMoveAndMerge = new FormRestructure();
+            frmMoveAndMerge.StartPosition = FormStartPosition.CenterParent;
+            frmMoveAndMerge.Show();
         } 
         
         private void btnBlurred_Click(object sender, EventArgs e)

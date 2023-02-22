@@ -12,5 +12,6 @@ Global
 		{C03065D8-9B52-442E-9C63-CA040E9E22F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C03065D8-9B52-442E-9C63-CA040E9E22F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C03065D8-9B52-442E-9C63-CA040E9E22F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C03065D8-9B52-442E-9C63-CA040E9E22F2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

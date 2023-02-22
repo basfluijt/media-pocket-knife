@@ -5,9 +5,12 @@
     using System.Drawing;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
     using Helpers;
+    using Models;
     using OpenCvSharp;
+    using Orientation = Models.Orientation;
     using Size = System.Drawing.Size;
 
     public partial class FormDeleteMoveBadImages : Form
@@ -54,7 +57,7 @@
 
 
         /******** Button Click-events *********/
-        private void btnSource_Click(object sender, EventArgs e)
+        private async void btnSource_Click(object sender, EventArgs e)
         {
             DisableUi();
             using (var fbd = new FolderBrowserDialog())
@@ -86,7 +89,7 @@
             Application.DoEvents();
 
             // Set MediaItem properties
-            Workload = MediaAnalyzer.GatherMediaInformation(SourceFiles);
+            Workload = await MediaAnalyzer.GatherMediaInformation(SourceFiles);
             tbConsole.SelectionColor = Color.Green;
             tbConsole.Text += @" - Done";
             tbConsole.SelectionColor = Color.Black;

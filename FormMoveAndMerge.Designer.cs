@@ -166,7 +166,7 @@
             this.cbSizeContent.Name = "cbSizeContent";
             this.cbSizeContent.Size = new System.Drawing.Size(236, 24);
             this.cbSizeContent.TabIndex = 2;
-            this.cbSizeContent.Text = "Check by size/content";
+            this.cbSizeContent.Text = "Check duplicates by size/content";
             this.cbSizeContent.UseVisualStyleBackColor = true;
             // 
             // cbCopyOnly
